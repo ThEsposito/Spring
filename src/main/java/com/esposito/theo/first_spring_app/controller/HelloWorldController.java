@@ -21,6 +21,22 @@ comum é enviarmos um TOKEN.
 um login/me identificar" e, na próxima request não vou precisar mandar esses dados novamente
 porque vão guardar o meu estado (autenticado ou não, oq eu fiz anteriormente, etc).
  */
+
+/*
+Agora já temos uma classe com a anotação RestController
+Queremos criar um endpoint e ja temos uma classe que represente um rest controller e preciso mapear
+os meus endpoints.
+Ou seja, queremos saber qual path o meu endpoint vair responder 
+*/
 @RestController
+@RequestMapping("/hello-world")
 public class HelloWorldController {
+    // pode responder nos métodos: post, get, delete, put, patch, options, head
+    // Preciso dizer pro Spring qual método HTTP o meu método vai responder:
+    
+    // GET /hello-world (com GetMapping sem parâmetro) ou /hello-world/get (do mobo que está aqui) 
+    @GetMapping("/get")
+    public String helloWorld(){
+        return "Hello, World!";
+    }
 }
