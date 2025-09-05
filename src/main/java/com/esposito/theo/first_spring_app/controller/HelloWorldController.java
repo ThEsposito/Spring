@@ -1,5 +1,7 @@
 package com.esposito.theo.first_spring_app.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 // Indica que a classe é um controller rest. Combina @Controller e @ResponseBody.
@@ -23,20 +25,52 @@ porque vão guardar o meu estado (autenticado ou não, oq eu fiz anteriormente, 
  */
 
 /*
-Agora já temos uma classe com a anotação RestController
-Queremos criar um endpoint e ja temos uma classe que represente um rest controller e preciso mapear
-os meus endpoints.
-Ou seja, queremos saber qual path o meu endpoint vair responder 
+Agora que já temos uma classe com a anotação RestController
+Queremos criar um endpoint e já temos uma classe que represente um rest controller e preciso
+MAPEAR os meus endpoints.
+Ou seja, queremos saber qual path o meu endpoint vai responder
 */
 @RestController
 @RequestMapping("/hello-world")
 public class HelloWorldController {
-    // pode responder nos métodos: post, get, delete, put, patch, options, head
-    // Preciso dizer pro Spring qual método HTTP o meu método vai responder:
+    // Pode responder nos métodos: post, get, delete, put, patch, options, head
+    // Preciso dizer pro Spring qual métdo HTTP o meu métdo vai responder:
     
-    // GET /hello-world (com GetMapping sem parâmetro) ou /hello-world/get (do mobo que está aqui) 
-    @GetMapping("/get")
+    // GET /hello-world (com GetMapping sem parâmetro) ou
+    // /hello-world/get (acessaria com localhost:8080/hello-world/get
+    @GetMapping
     public String helloWorld(){
-        return "Hello, World!";
+        ;
     }
+
+    // 8080 é a porta padrão! Para alterar, vamos para resources/application.properties
+    // e colocamos: server.port=3000
+
+    /*
+    Nesse arquivo, podemos incluir também, p. ex, configurações para o banco de dadoos:
+    spring.datasource.url=jdbc:mysql://localhost:3306/first-sprint-app
+    spring.datasource.username=root
+    spring.datasource.password=root
+
+    Também poderíamos usar variáveis de ambiente:
+    spring.datasource.password=${DB_PASSWORD}
+     */
+
+    /*
+    O Spring tem os "perfis de configurações", para caso uma aplicação esteja rodando em
+    diferentes ambientes. Ex: ambiente de produção, ambientes de teste (que a equipe usa
+    para testar a aplicação antes de disponibilizar para o cliente, mesmo que esteja em deploy)
+
+     Bastaria criar o arquivo application-dev.properties e usar a anotacao @Profile("dev")
+     Ou...
+     spring.profiles.active=${ACTIVE_PROFILE:dev}
+     Dessa forma, posso procurar a var de ambiente ACTIVE_PROFILE e, se não achar, usa o valor de
+     dev.
+
+     Pra passar as var de ambiente, basta ir nas configurações de execução do IntelliJ e adicionar
+     a var de ambiente:
+     ACTIFE_PROFILE=default
+     */
+
+    // Enfim, existem muitas outras configurações
 }
