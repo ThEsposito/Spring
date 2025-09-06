@@ -1,5 +1,7 @@
 package com.esposito.theo.first_spring_app.controller;
 
+import com.esposito.theo.first_spring_app.service.HelloWorldService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +35,14 @@ Ou seja, queremos saber qual path o meu endpoint vai responder
 @RestController
 @RequestMapping("/hello-world")
 public class HelloWorldController {
+    // Para realizar a instanciação do nosso service, poderíamos criar um construtor para esta classe
+    // que recebesse ele, dessa forma o spring já entenderia.
+
+    // No entanto, é mais comum utilizar a anotação @Autowired, dessa forma o Spring também
+    // já faz esse processo pra gente, incluindo a injeção das dependências.
+    @Autowired
+    HelloWorldService helloWorldService;
+
     // Pode responder nos métodos: post, get, delete, put, patch, options, head
     // Preciso dizer pro Spring qual métdo HTTP o meu métdo vai responder:
     
@@ -40,7 +50,7 @@ public class HelloWorldController {
     // /hello-world/get (acessaria com localhost:8080/hello-world/get
     @GetMapping
     public String helloWorld(){
-        ;
+        return helloWorldService.helloWorld("Theo");
     }
 
     // 8080 é a porta padrão! Para alterar, vamos para resources/application.properties
@@ -74,3 +84,6 @@ public class HelloWorldController {
 
     // Enfim, existem muitas outras configurações
 }
+/*
+
+ */
