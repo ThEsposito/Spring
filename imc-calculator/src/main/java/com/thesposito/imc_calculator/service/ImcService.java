@@ -21,4 +21,5 @@ public class ImcService {
         lastResultStorage.salvarResultado(response);
         return response;
     }
+
 }
