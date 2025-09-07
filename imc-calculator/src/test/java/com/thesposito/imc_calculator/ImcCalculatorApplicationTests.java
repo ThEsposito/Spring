@@ -1,4 +1,4 @@
-package first_spring_app.imc_calculator;
+package com.thesposito.imc_calculator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
