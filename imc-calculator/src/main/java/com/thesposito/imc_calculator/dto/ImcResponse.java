@@ -4,5 +4,5 @@ public record ImcResponse(
         double imc,
         String interpretacao,
         double pesoIdeal,
-        double alturaCM) {
+        double alturaCm) {
 }
