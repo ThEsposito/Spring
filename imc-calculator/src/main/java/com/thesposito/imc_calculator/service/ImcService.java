@@ -4,7 +4,9 @@ import com.thesposito.imc_calculator.dto.ImcRequest;
 import com.thesposito.imc_calculator.dto.ImcResponse;
 import com.thesposito.imc_calculator.storage.LastResultStorage;
 import com.thesposito.imc_calculator.util.ImcCalculator;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ImcService {
     private final LastResultStorage lastResultStorage;
 
@@ -20,6 +22,10 @@ public class ImcService {
         ImcResponse response = new ImcResponse(imc, interpretacao, pesoIdeal, alturaCm);
         lastResultStorage.salvarResultado(response);
         return response;
+    }
+
+    public ImcResponse obterUltimoResultado() {
+        return lastResultStorage.obterUltimoResultado();
     }
 
 }
