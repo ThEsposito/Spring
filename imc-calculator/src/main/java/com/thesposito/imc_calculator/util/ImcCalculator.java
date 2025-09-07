@@ -4,7 +4,6 @@ package com.thesposito.imc_calculator.util;
 // métodos por lá.
 
 public class ImcCalculator {
-
     public static double calcularAlturaCm(double alturaM){
         return alturaM * 100;
     }
