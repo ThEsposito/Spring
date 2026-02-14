@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class MessageController {
-    private MessageService messageService;
+    private final MessageService messageService;
 
     public MessageController(MessageService messageService) {
         this.messageService = messageService;
