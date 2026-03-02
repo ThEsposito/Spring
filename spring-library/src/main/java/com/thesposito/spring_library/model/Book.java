@@ -11,12 +11,12 @@ public class Book {
     private String title;
     private String author;
     private Integer publicationYear;
-    private boolean available;
+    private Boolean available;
 
     public Book() {
     }
 
-    public Book(String title, String author, Integer publicationYear, boolean isAvailable) {
+    public Book(String title, String author, Integer publicationYear, Boolean isAvailable) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;

@@ -15,7 +15,7 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public Book registerBook(Book b){
+    public Book saveBook(Book b) {
         b.setAvailable(true);
         return bookRepository.save(b);
     }
