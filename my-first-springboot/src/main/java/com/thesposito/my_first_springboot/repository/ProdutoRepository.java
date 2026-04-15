@@ -6,6 +6,3 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {}
-
-// Referências:
-// https://www.devmedia.com.br/jpa-como-usar-a-anotacao-generatedvalue/38592

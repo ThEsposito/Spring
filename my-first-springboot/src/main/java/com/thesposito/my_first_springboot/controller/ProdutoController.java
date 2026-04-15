@@ -1,7 +1,9 @@
 package com.thesposito.my_first_springboot.controller;
 
+import com.thesposito.my_first_springboot.exceptions.RecursoNaoEncontradoException;
 import com.thesposito.my_first_springboot.model.Produto;
 import com.thesposito.my_first_springboot.service.ProdutoService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,11 +24,11 @@ public class ProdutoController {
         return produtoService.listarProdutos();
     }
 
+    // Preciso indicar o genérico '?' porque podemos retornar no corpo o objeto ou o erro
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> buscarProduto(@PathVariable Long id) {
-        return produtoService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> buscarProduto(@PathVariable Long id) {
+        Produto p = produtoService.buscarPorId(id);
+        return ResponseEntity.ok(p);
     }
 
     @PostMapping()

@@ -1,5 +1,6 @@
 package com.thesposito.my_first_springboot.service;
 
+import com.thesposito.my_first_springboot.exceptions.RecursoNaoEncontradoException;
 import com.thesposito.my_first_springboot.model.Produto;
 import com.thesposito.my_first_springboot.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,9 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public Optional<Produto> buscarPorId(Long id){
-        return produtoRepository.findById(id);
+    public Produto buscarPorId(Long id){
+        return produtoRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Produto com id "+id+" não encontrado!"));
     }
 
     public Produto salvarProduto(Produto produto){
@@ -28,6 +30,9 @@ public class ProdutoService {
     }
 
     public void deletarProduto(Long id){
+        if(!produtoRepository.existsById(id))
+            throw new RecursoNaoEncontradoException("Produto com id "+id+" não encontrado!");
+
         produtoRepository.deleteById(id);
     }
 }

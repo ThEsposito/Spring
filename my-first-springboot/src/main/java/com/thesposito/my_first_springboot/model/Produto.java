@@ -38,3 +38,6 @@ public class Produto {
         this.preco = preco;
     }
 }
+
+// Referências:
+// https://www.devmedia.com.br/jpa-como-usar-a-anotacao-generatedvalue/38592
